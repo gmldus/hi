@@ -8,7 +8,12 @@ const Draggable = ({ children }: Props) => {
 
   const [pressed, setPressed] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [screen, setScreen] = useState({ width: window.innerWidth, height: window.innerHeight });
   const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (ref.current) {
@@ -16,14 +21,27 @@ const Draggable = ({ children }: Props) => {
     }
   }, [position]);
 
+  const preventOverflow = (size: number, standard: number) => {
+    if (size < 0) return 0;
+    if (size > standard - 100) return standard - 100;
+    return size;
+  };
+
   const handleMouseMove = (e: MouseEvent) => {
     if (pressed) {
       setPosition({
-        x: position.x + e.movementX,
-        y: position.y + e.movementY,
+        x: preventOverflow(position.x + e.movementX, screen.width),
+        y: preventOverflow(position.y + e.movementY, screen.height),
       });
     }
-  }
+  };
+
+  const handleResize = () => {
+    setScreen({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
 
   return (
     <div
