@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import styled from 'styled-components';
+import Draggable from 'components/Draggable';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Draggable>
+      <Box>Drag Me</Box>
+    </Draggable>
   );
 }
 
 export default App;
+
+const Box = styled.button`
+  padding: 1.75rem 2.5rem;
+  border-radius: 3px;
+  border: solid 1px;
+  background-color: #ed553b;
+`;
