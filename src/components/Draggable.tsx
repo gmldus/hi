@@ -21,6 +21,15 @@ const Draggable = ({ children }: Props) => {
     }
   }, [position]);
 
+  useEffect(() => {
+    if (position.x + 100 > screen.width) {
+      setPosition({ ...position, x: screen.width - 100 });
+    }
+    if (position.y + 100 > screen.height) {
+      setPosition({ ...position, y: screen.height - 100 });
+    }
+  }, [screen]);
+
   const preventOverflow = (size: number, standard: number) => {
     if (size < 0) return 0;
     if (size > standard - 100) return standard - 100;
