@@ -63,7 +63,7 @@ const Draggable = ({ children }: Props) => {
       onMouseDown={() => setPressed(true)}
       onMouseUp={() => setPressed(false)}
     >
-      <div ref={ref} style={{ display: 'inline-block' }}>
+      <div ref={ref} style={{ width: '100px', height: '100px' }}>
         {children}
       </div>
     </div>

@@ -14,8 +14,8 @@ const App: React.FC = () => {
 export default App;
 
 const Box = styled.button`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   border-radius: 3px;
   border: solid 1px;
   background-color: #ed553b;
