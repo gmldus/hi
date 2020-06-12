@@ -13,6 +13,10 @@ const Draggable = ({ children }: Props) => {
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -32,7 +36,7 @@ const Draggable = ({ children }: Props) => {
 
   const preventOverflow = (size: number, standard: number) => {
     if (size < 0) return 0;
-    if (size > standard - 100) return standard - 100;
+    if (size + 100 > standard) return standard - 100;
     return size;
   };
 
